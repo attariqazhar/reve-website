@@ -1,33 +1,23 @@
 import { useState } from 'react'
+import reve from '/ReVeLogo.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+// import { BrowserRouter as Router, Route, Switch,Link  } from "react-router-dom"
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card ">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="bg-black">
-        Click on the Vite and React logos to learn more
-      </p>
+        <div className="bg-[#0B0A0A] h-20 items-center w-screen flex flex-row justify-between px-40">
+          <div className="text-white">
+            <img src={reve} alt="ReVe Logo" width={97} height={48}/>
+          </div>
+          <div className="">
+            
+          </div>
+        </div>
     </>
   )
 }
