@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const faqData = [
   {
@@ -23,35 +24,67 @@ const faqData = [
   },
 ];
 
+const styles = {
+  accordionItem: {
+    border: '2px solid black',
+    marginBottom: '30px',
+    borderRadius: '10px',
+    overflow: 'hidden',
+  },
+  button: {
+    width: '100%',
+    textAlign: 'left',
+    outline: 'none',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '16px',
+    height: '60px',
+    cursor: 'pointer',
+  },
+  answer: {
+    padding: '16px',
+    // borderTop: '1px solid black',
+    fontSize: '1.5rem',
+  },
+  questionText: {
+    fontSize: '1.5rem',
+  },
+  toggleIcon: {
+    fontSize: '1.5rem',
+  },
+};
+
 function AccordionItem({ question, answer, isOpen, onClick }) {
   return (
-    <div className="border-black border-2 mb-10 rounded-lg overflow-hidden">
+    <div style={styles.accordionItem}>
       <button
-        className="w-full text-left focus:outline-none flex justify-between items-center p-4"
-        style={{ height: '60px' }} // Fixed height for the question section
+        style={{
+          ...styles.button,
+          borderBottom: isOpen ? '1px' : 'none',
+        }}
         onClick={onClick}
       >
-        <div className='flex flex-row px-2'>
-          <div className='text-xl'>{question}</div> 
-        </div>
-        <div className='flex flex-row justify-end px-6'>
-          <div className='ml-2 text-xl'>{isOpen ? '-' : '+'}</div>
-        </div>
+        <div style={styles.questionText}>{question}</div>
+        <div style={styles.toggleIcon}>{isOpen ? '-' : '+'}</div>
       </button>
-      {isOpen && <div className="p-4 bg-gray-50 border-t border-gray-600 text-xl">{answer}</div>}
+      {isOpen && <div style={styles.answer}>{answer}</div>}
     </div>
   );
 }
+
+AccordionItem.propTypes = {
+  question: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleAccordion = (index) => {
-    if (openIndex === index) {
-      setOpenIndex(null);
-    } else {
-      setOpenIndex(index);
-    }
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
